@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package hr;
+
+
+
+message Employee {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string department = 4;
+  string title = 5;
+
+  PersonalDetails personal_details = 6;
+  NextOfKin next_of_kin = 7;
+  EducationBackground education_background = 8;
+  SocialSecurity social_security = 9;
+
+  repeated EmploymentHistory employment_history = 10;
+  repeated JobTitle job_titles = 11;
+  repeated Skill skills = 12;
+
+
+}
+
+message PersonalDetails {
+  string gender = 1;
+  string date_of_birth = 2;
+  string marital_status = 3;
+}
+
+message NextOfKin {
+  string name = 1;
+  string relationship = 2;
+  string contact_number = 3;
+}
+
+message EducationBackground {
+  string highest_education_level = 1;
+  string university = 2;
+  string degree = 3;
+}
+
+message SocialSecurity {
+  string number = 1;
+  string date_of_issue = 2;
+  string date_of_expiry = 3;
+}
+
+message EmploymentHistory {
+  string company_name = 1;
+  string job_title = 2;
+  string start_date = 3;
+  string end_date = 4;
+}
+
+message JobTitle {
+  string title = 1;
+  string start_date = 2;
+  string end_date = 3;
+}
+
+message Skill {
+  string skill = 1;
+  string proficiency = 2;
+}
+
+service HRService {
+  rpc GetEmployee(GetEmployeeRequest) returns (GetEmployeeResponse);
+  rpc CreateEmployee(CreateEmployeeRequest) returns (CreateEmployeeResponse);
+  rpc UpdateEmployee(UpdateEmployeeRequest) returns (UpdateEmployeeResponse);
+  rpc DeleteEmployee(DeleteEmployeeRequest) returns (DeleteEmployeeResponse);
+}
+
+message GetEmployeeRequest {
+  string id = 1;
+}
+
+message GetEmployeeResponse {
+  Employee employee = 1;
+}
+
+message CreateEmployeeRequest {
+  Employee employee = 1;
+}
+
+message CreateEmployeeResponse {
+  Employee employee = 1;
+}
+
+message UpdateEmployeeRequest {
+  Employee employee = 1;
+}
+
+message UpdateEmployeeResponse {
+  Employee employee = 1;
+}
+
+message DeleteEmployeeRequest {
+  string id = 1;
+}
+
+message DeleteEmployeeResponse {
+}
